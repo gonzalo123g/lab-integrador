@@ -65,8 +65,14 @@ function mostrarLibros() {
 }
 
 function eliminarLibro(index) {
+   if (librosDisponibles[index].estado === "prestado") {
+      alert("No se puede eliminar un libro prestado");
+      return;
+   }
+
    alert(`libro con indice ${index} eliminado`);
    librosDisponibles.splice(index, 1);
    localStorage.setItem("librosDisponibles", JSON.stringify(librosDisponibles));
-   mostrarLibros();
 }
+
+mostrarLibros();
